@@ -25,8 +25,16 @@ struct THINKYJAMPROJECT_API FSaveData
     //Current text being displayed, since this is mainly user made it needs to be saved
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Saved Variables")
     FString DisplayText;
+};
 
-    //Current connections are changable by the player so they need to be saved
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Saved Variables")
-    TArray<int> CurrentConnections;
+USTRUCT(BlueprintType)
+struct THINKYJAMPROJECT_API FIDPairs
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ID")
+    int FirstID;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ID")
+    int SecondID;
 };
