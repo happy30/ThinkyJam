@@ -24,4 +24,7 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     int StickyNoteBaseID = 1000;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    TArray<FIDPairs> StoredPairs;
+
 };
