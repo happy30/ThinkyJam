@@ -26,12 +26,13 @@ void UTJGameInstance::CreateNewSaveSlot()
     UGameplayStatics::SaveGameToSlot(GameData, SaveSlot, 0);
 }
 
-void UTJGameInstance::SaveGameData(TArray<FSaveData> SavingData, int StickyCount)
+void UTJGameInstance::SaveGameData(TArray<FSaveData> SavingData, int StickyCount, TArray<FIDPairs> SavingPairs)
 {
     if (IsValid(GameData))
     {
         GameData->StoredData = SavingData;
         GameData->StickyNoteBaseID = StickyCount;
+        GameData->StoredPairs = SavingPairs;
 
         UGameplayStatics::SaveGameToSlot(GameData, SaveSlot, 0);
     }
