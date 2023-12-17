@@ -12,6 +12,7 @@ ABaseEvidence::ABaseEvidence()
 
     MeshComp = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
     MeshComp->SetCollisionProfileName(UCollisionProfile::BlockAll_ProfileName);
+    //MeshComp->SetRelativeRotation(FRotator(90, 0, 0));
     RootComponent = MeshComp;
 
     ID = 0;
@@ -24,6 +25,13 @@ ABaseEvidence::ABaseEvidence()
 void ABaseEvidence::BeginPlay()
 {
 	Super::BeginPlay();
+
+    if (IsValid(WidgetTemplate))
+    {
+        WidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WidgetTemplate);
+
+        WidgetInstance->AddToViewport();
+    }
 	
 }
 
@@ -34,3 +42,22 @@ void ABaseEvidence::Tick(float DeltaTime)
 
 }
 
+void ABaseEvidence::ResizeMesh()
+{
+    if (IsValid(WidgetInstance))
+    {
+        if (IsValid(MeshComp->GetStaticMesh()))
+        {
+            FVector2D Size = WidgetInstance->GetDesiredSize();
+
+            FBox BoundBox = MeshComp->GetStaticMesh()->GetBoundingBox();
+
+            FVector BoxSize = BoundBox.GetSize();
+
+            MeshComp->SetWorldScale3D(FVector(Size.Y / BoxSize.Y, 0.01, Size.X / BoxSize.X));
+        }
+        //Needs to be removes from viewport if it exists regardess of resizing
+        WidgetInstance->RemoveFromViewport();
+        WidgetInstance = nullptr;
+    }
+}
