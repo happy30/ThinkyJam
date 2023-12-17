@@ -27,7 +27,7 @@ protected:
 
     //All components and variables needed for the base evidence.
 
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
     UStaticMeshComponent* MeshComp;
 
     //Numeral ID of the current Evidence
