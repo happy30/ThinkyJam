@@ -31,7 +31,7 @@ protected:
     UStaticMeshComponent* MeshComp;
 
     //Numeral ID of the current Evidence
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Evidence Details")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Evidence Details")
     int ID;
 
     //Text that can will be displayed, used in sticky notes
